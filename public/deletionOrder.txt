@@ -1,0 +1,6 @@
+system_settings
+migration
+gis_ward
+gis_province
+gis_district
+gis_country

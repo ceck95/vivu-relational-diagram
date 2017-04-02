@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<database name="vivu" schema="vv" type="PostgreSQL - 9.6.2">
+   <tables>
+      <table name="category" numRows="3" remarks="" schema="vv" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('vv.category_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial">
+            <child column="category_id" foreignKey="product_category_id_fkey" implied="false" onDeleteCascade="false" table="product"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="name" nullable="false" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="2" name="priority" nullable="false" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="0" id="3" name="notes" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="4" name="url_key" nullable="false" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="5" name="meta_desc" nullable="true" remarks="" size="2147483647" type="jsonb"/>
+         <column autoUpdated="false" defaultValue="1" digits="0" id="6" name="status" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" defaultValue="now()" digits="6" id="7" name="created_at" nullable="false" remarks="" size="35" type="timestamptz"/>
+         <column autoUpdated="false" digits="0" id="8" name="created_by" nullable="true" remarks="" size="19" type="int8"/>
+         <column autoUpdated="false" defaultValue="now()" digits="6" id="9" name="updated_at" nullable="false" remarks="" size="35" type="timestamptz"/>
+         <column autoUpdated="false" digits="0" id="10" name="updated_by" nullable="true" remarks="" size="19" type="int8"/>
+         <column autoUpdated="false" digits="0" id="11" name="category_group_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="category_category_group_id_pkey" implied="false" onDeleteCascade="false" table="category_group"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="12" name="cover_image_path" nullable="true" remarks="" size="2147483647" type="text"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="category_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table name="category_group" numRows="4" remarks="" schema="vv" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('vv.category_group_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial">
+            <child column="category_group_id" foreignKey="category_category_group_id_pkey" implied="false" onDeleteCascade="false" table="category"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="name" nullable="false" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="2" name="priority" nullable="false" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="0" id="3" name="notes" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="4" name="url_key" nullable="false" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="5" name="meta_desc" nullable="true" remarks="" size="2147483647" type="jsonb"/>
+         <column autoUpdated="false" defaultValue="1" digits="0" id="6" name="status" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" defaultValue="now()" digits="6" id="7" name="created_at" nullable="false" remarks="" size="35" type="timestamptz"/>
+         <column autoUpdated="false" digits="0" id="8" name="created_by" nullable="true" remarks="" size="19" type="int8"/>
+         <column autoUpdated="false" defaultValue="now()" digits="6" id="9" name="updated_at" nullable="false" remarks="" size="35" type="timestamptz"/>
+         <column autoUpdated="false" digits="0" id="10" name="updated_by" nullable="true" remarks="" size="19" type="int8"/>
+         <column autoUpdated="false" digits="0" id="11" name="cover_image_path" nullable="true" remarks="" size="2147483647" type="text"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="category_group_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table name="customer" numRows="1" remarks="" schema="vv" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('vv.customer_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial">
+            <child column="customer_id" foreignKey="quote_customer_id_fkey" implied="false" onDeleteCascade="false" table="quote"/>
+            <child column="customer_id" foreignKey="sales_order_customer_id_fkey" implied="false" onDeleteCascade="false" table="sales_order"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="email" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="2" name="phone" nullable="false" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="3" name="full_name" nullable="false" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="6" id="4" name="dob" nullable="true" remarks="" size="35" type="timestamptz"/>
+         <column autoUpdated="false" digits="0" id="5" name="gender" nullable="false" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="6" name="password_hash" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="7" name="password_reset_token" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" defaultValue="now()" digits="6" id="8" name="created_at" nullable="false" remarks="" size="35" type="timestamptz"/>
+         <column autoUpdated="false" defaultValue="now()" digits="6" id="9" name="updated_at" nullable="false" remarks="" size="35" type="timestamptz"/>
+         <column autoUpdated="false" digits="0" id="10" name="created_by" nullable="true" remarks="" size="19" type="int8"/>
+         <column autoUpdated="false" digits="0" id="11" name="updated_by" nullable="true" remarks="" size="19" type="int8"/>
+         <column autoUpdated="false" defaultValue="1" digits="0" id="12" name="status" nullable="true" remarks="" size="10" type="int4"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="customer_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="customer_phone_unique" unique="true">
+            <column ascending="true" name="phone"/>
+         </index>
+      </table>
+      <table name="customer_address" numRows="10" remarks="" schema="vv" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('vv.customer_address_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial">
+            <child column="customer_address_id" foreignKey="quote_customer_address_id_fkey" implied="false" onDeleteCascade="false" table="quote"/>
+            <child column="shipping_address_id" foreignKey="sales_order_shipping_address_id_fkey" implied="false" onDeleteCascade="false" table="sales_order"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="customer_id" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="0" id="2" name="type" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" defaultValue="false" digits="0" id="3" name="is_default" nullable="true" remarks="" size="1" type="bool"/>
+         <column autoUpdated="false" digits="0" id="4" name="full_name" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="5" name="phone" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="6" name="street" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="7" name="postal_code" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="8" name="country_code" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" defaultValue="now()" digits="6" id="9" name="created_at" nullable="false" remarks="" size="35" type="timestamptz"/>
+         <column autoUpdated="false" defaultValue="now()" digits="6" id="10" name="updated_at" nullable="false" remarks="" size="35" type="timestamptz"/>
+         <column autoUpdated="false" digits="0" id="11" name="created_by" nullable="true" remarks="" size="19" type="int8"/>
+         <column autoUpdated="false" digits="0" id="12" name="updated_by" nullable="true" remarks="" size="19" type="int8"/>
+         <column autoUpdated="false" defaultValue="1" digits="0" id="13" name="status" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="0" id="14" name="province" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="15" name="district" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="16" name="ward" nullable="true" remarks="" size="2147483647" type="text"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="customer_address_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table name="order_item" numRows="0" remarks="" schema="vv" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('vv.order_item_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial"/>
+         <column autoUpdated="false" digits="0" id="1" name="order_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="order_item_order_id_fkey" implied="false" onDeleteCascade="false" table="sales_order"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="2" name="quote_item_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="order_item_quote_item_id_fkey" implied="false" onDeleteCascade="false" table="quote_item"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="3" name="product_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="order_item_product_id_fkey" implied="false" onDeleteCascade="false" table="product"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="4" name="selected_product_color_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="order_item_selected_product_color_id_fkey" implied="false" onDeleteCascade="false" table="product_color"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="5" name="quantity" nullable="false" remarks="" size="19" type="int8"/>
+         <column autoUpdated="false" digits="8" id="6" name="base_price" nullable="false" remarks="" size="8" type="float4"/>
+         <column autoUpdated="false" defaultValue="1" digits="0" id="7" name="status" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" defaultValue="now()" digits="6" id="8" name="created_at" nullable="false" remarks="" size="35" type="timestamptz"/>
+         <column autoUpdated="false" digits="0" id="9" name="created_by" nullable="true" remarks="" size="19" type="int8"/>
+         <column autoUpdated="false" defaultValue="now()" digits="6" id="10" name="updated_at" nullable="false" remarks="" size="35" type="timestamptz"/>
+         <column autoUpdated="false" digits="0" id="11" name="updated_by" nullable="true" remarks="" size="19" type="int8"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="order_item_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table name="order_payment" numRows="0" remarks="" schema="vv" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('vv.order_payment_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial"/>
+         <column autoUpdated="false" digits="0" id="1" name="order_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="order_payment_order_id_fkey" implied="false" onDeleteCascade="false" table="sales_order"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="2" name="method" nullable="false" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" defaultValue="1" digits="0" id="3" name="status" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" defaultValue="now()" digits="6" id="4" name="created_at" nullable="false" remarks="" size="35" type="timestamptz"/>
+         <column autoUpdated="false" digits="0" id="5" name="created_by" nullable="true" remarks="" size="19" type="int8"/>
+         <column autoUpdated="false" defaultValue="now()" digits="6" id="6" name="updated_at" nullable="false" remarks="" size="35" type="timestamptz"/>
+         <column autoUpdated="false" digits="0" id="7" name="updated_by" nullable="true" remarks="" size="19" type="int8"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="order_payment_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table name="order_status_history" numRows="0" remarks="" schema="vv" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('vv.order_status_history_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial"/>
+         <column autoUpdated="false" digits="0" id="1" name="order_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="order_status_history_order_id_fkey" implied="false" onDeleteCascade="false" table="sales_order"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="2" name="order_status" nullable="false" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="0" id="3" name="notes" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" defaultValue="1" digits="0" id="4" name="status" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" defaultValue="now()" digits="6" id="5" name="created_at" nullable="false" remarks="" size="35" type="timestamptz"/>
+         <column autoUpdated="false" digits="0" id="6" name="created_by" nullable="true" remarks="" size="19" type="int8"/>
+         <column autoUpdated="false" defaultValue="now()" digits="6" id="7" name="updated_at" nullable="false" remarks="" size="35" type="timestamptz"/>
+         <column autoUpdated="false" digits="0" id="8" name="updated_by" nullable="true" remarks="" size="19" type="int8"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="order_status_history_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table name="product" numRows="19" remarks="" schema="vv" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('vv.product_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial">
+            <child column="product_id" foreignKey="order_item_product_id_fkey" implied="false" onDeleteCascade="false" table="order_item"/>
+            <child column="product_id" foreignKey="product_color_product_id_fkey" implied="false" onDeleteCascade="false" table="product_color"/>
+            <child column="product_id" foreignKey="quote_item_product_id_fkey" implied="false" onDeleteCascade="false" table="quote_item"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="category_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="product_category_id_fkey" implied="false" onDeleteCascade="false" table="category"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="2" name="name" nullable="false" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="3" name="sku" nullable="false" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="4" name="meta_desc" nullable="true" remarks="" size="2147483647" type="jsonb"/>
+         <column autoUpdated="false" digits="0" id="5" name="notes" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="6" name="details" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="7" name="url_key" nullable="false" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="8" name="image_path" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="8" id="9" name="base_price" nullable="false" remarks="" size="8" type="float4"/>
+         <column autoUpdated="false" defaultValue="false" digits="0" id="10" name="is_sold_out" nullable="true" remarks="" size="1" type="bool"/>
+         <column autoUpdated="false" defaultValue="1" digits="0" id="11" name="status" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" defaultValue="now()" digits="6" id="12" name="created_at" nullable="false" remarks="" size="35" type="timestamptz"/>
+         <column autoUpdated="false" digits="0" id="13" name="created_by" nullable="true" remarks="" size="19" type="int8"/>
+         <column autoUpdated="false" defaultValue="now()" digits="6" id="14" name="updated_at" nullable="false" remarks="" size="35" type="timestamptz"/>
+         <column autoUpdated="false" digits="0" id="15" name="updated_by" nullable="true" remarks="" size="19" type="int8"/>
+         <column autoUpdated="false" defaultValue="false" digits="0" id="16" name="is_product_color" nullable="true" remarks="" size="1" type="bool"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="product_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="product_sku_unique" unique="true">
+            <column ascending="true" name="sku"/>
+         </index>
+      </table>
+      <table name="product_color" numRows="5" remarks="" schema="vv" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('vv.product_color_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial">
+            <child column="selected_product_color_id" foreignKey="order_item_selected_product_color_id_fkey" implied="false" onDeleteCascade="false" table="order_item"/>
+            <child column="product_color_id" foreignKey="product_color_preview_image_product_color_id_fkey" implied="false" onDeleteCascade="false" table="product_color_preview_image"/>
+            <child column="selected_product_color_id" foreignKey="quote_item_selected_product_color_id_fkey" implied="false" onDeleteCascade="false" table="quote_item"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="product_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="product_color_product_id_fkey" implied="false" onDeleteCascade="false" table="product"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="2" name="color_name" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="3" name="refer_product_image_path" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" defaultValue="0" digits="8" id="4" name="price" nullable="false" remarks="" size="8" type="float4"/>
+         <column autoUpdated="false" digits="0" id="5" name="priority" nullable="false" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" defaultValue="false" digits="0" id="6" name="is_sold_out" nullable="true" remarks="" size="1" type="bool"/>
+         <column autoUpdated="false" defaultValue="1" digits="0" id="7" name="status" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" defaultValue="now()" digits="6" id="8" name="created_at" nullable="false" remarks="" size="35" type="timestamptz"/>
+         <column autoUpdated="false" digits="0" id="9" name="created_by" nullable="true" remarks="" size="19" type="int8"/>
+         <column autoUpdated="false" defaultValue="now()" digits="6" id="10" name="updated_at" nullable="false" remarks="" size="35" type="timestamptz"/>
+         <column autoUpdated="false" digits="0" id="11" name="updated_by" nullable="true" remarks="" size="19" type="int8"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="product_color_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table name="product_color_preview_image" numRows="5" remarks="" schema="vv" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('vv.product_color_preview_image_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial"/>
+         <column autoUpdated="false" digits="0" id="1" name="product_color_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="product_color_preview_image_product_color_id_fkey" implied="false" onDeleteCascade="false" table="product_color"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="2" name="image_path" nullable="false" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" defaultValue="1" digits="0" id="3" name="status" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" defaultValue="now()" digits="6" id="4" name="created_at" nullable="false" remarks="" size="35" type="timestamptz"/>
+         <column autoUpdated="false" digits="0" id="5" name="created_by" nullable="true" remarks="" size="19" type="int8"/>
+         <column autoUpdated="false" defaultValue="now()" digits="6" id="6" name="updated_at" nullable="false" remarks="" size="35" type="timestamptz"/>
+         <column autoUpdated="false" digits="0" id="7" name="updated_by" nullable="true" remarks="" size="19" type="int8"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="product_color_preview_image_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table name="quote" numRows="57" remarks="" schema="vv" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('vv.quote_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial">
+            <child column="quote_id" foreignKey="quote_item_quote_id_fkey" implied="false" onDeleteCascade="false" table="quote_item"/>
+            <child column="quote_id" foreignKey="quote_payment_quote_id_fkey" implied="false" onDeleteCascade="false" table="quote_payment"/>
+            <child column="quote_id" foreignKey="sales_order_quote_id_fkey" implied="false" onDeleteCascade="false" table="sales_order"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="order_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="quote_sales_order_frk" implied="false" onDeleteCascade="false" table="sales_order"/>
+         </column>
+         <column autoUpdated="false" digits="8" id="2" name="subtotal" nullable="true" remarks="" size="8" type="float4"/>
+         <column autoUpdated="false" digits="8" id="3" name="grand_total" nullable="true" remarks="" size="8" type="float4"/>
+         <column autoUpdated="false" digits="0" id="4" name="checkout_medthod" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="5" name="customer_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="quote_customer_id_fkey" implied="false" onDeleteCascade="false" table="customer"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="6" name="customer_address_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="quote_customer_address_id_fkey" implied="false" onDeleteCascade="false" table="customer_address"/>
+         </column>
+         <column autoUpdated="false" defaultValue="1" digits="0" id="7" name="status" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" defaultValue="now()" digits="6" id="8" name="created_at" nullable="false" remarks="" size="35" type="timestamptz"/>
+         <column autoUpdated="false" digits="0" id="9" name="created_by" nullable="true" remarks="" size="19" type="int8"/>
+         <column autoUpdated="false" defaultValue="now()" digits="6" id="10" name="updated_at" nullable="false" remarks="" size="35" type="timestamptz"/>
+         <column autoUpdated="false" digits="0" id="11" name="updated_by" nullable="true" remarks="" size="19" type="int8"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="quote_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table name="quote_item" numRows="8" remarks="" schema="vv" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('vv.quote_item_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial">
+            <child column="quote_item_id" foreignKey="order_item_quote_item_id_fkey" implied="false" onDeleteCascade="false" table="order_item"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="quote_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="quote_item_quote_id_fkey" implied="false" onDeleteCascade="false" table="quote"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="2" name="product_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="quote_item_product_id_fkey" implied="false" onDeleteCascade="false" table="product"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="3" name="selected_product_color_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="quote_item_selected_product_color_id_fkey" implied="false" onDeleteCascade="false" table="product_color"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="4" name="quantity" nullable="false" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="8" id="5" name="base_price" nullable="false" remarks="" size="8" type="float4"/>
+         <column autoUpdated="false" defaultValue="1" digits="0" id="6" name="status" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" defaultValue="now()" digits="6" id="7" name="created_at" nullable="false" remarks="" size="35" type="timestamptz"/>
+         <column autoUpdated="false" digits="0" id="8" name="created_by" nullable="true" remarks="" size="19" type="int8"/>
+         <column autoUpdated="false" defaultValue="now()" digits="6" id="9" name="updated_at" nullable="false" remarks="" size="35" type="timestamptz"/>
+         <column autoUpdated="false" digits="0" id="10" name="updated_by" nullable="true" remarks="" size="19" type="int8"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="quote_item_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table name="quote_payment" numRows="0" remarks="" schema="vv" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('vv.quote_payment_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial"/>
+         <column autoUpdated="false" digits="0" id="1" name="quote_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="quote_payment_quote_id_fkey" implied="false" onDeleteCascade="false" table="quote"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="2" name="method" nullable="false" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" defaultValue="1" digits="0" id="3" name="status" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" defaultValue="now()" digits="6" id="4" name="created_at" nullable="false" remarks="" size="35" type="timestamptz"/>
+         <column autoUpdated="false" digits="0" id="5" name="created_by" nullable="true" remarks="" size="19" type="int8"/>
+         <column autoUpdated="false" defaultValue="now()" digits="6" id="6" name="updated_at" nullable="false" remarks="" size="35" type="timestamptz"/>
+         <column autoUpdated="false" digits="0" id="7" name="updated_by" nullable="true" remarks="" size="19" type="int8"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="quote_payment_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table name="sales_order" numRows="0" remarks="" schema="vv" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('vv.sales_order_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial">
+            <child column="order_id" foreignKey="order_item_order_id_fkey" implied="false" onDeleteCascade="false" table="order_item"/>
+            <child column="order_id" foreignKey="order_payment_order_id_fkey" implied="false" onDeleteCascade="false" table="order_payment"/>
+            <child column="order_id" foreignKey="order_status_history_order_id_fkey" implied="false" onDeleteCascade="false" table="order_status_history"/>
+            <child column="order_id" foreignKey="quote_sales_order_frk" implied="false" onDeleteCascade="false" table="quote"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="order_status" nullable="false" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="0" id="2" name="customer_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="sales_order_customer_id_fkey" implied="false" onDeleteCascade="false" table="customer"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="3" name="customer_full_name" nullable="false" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="4" name="customer_phone" nullable="false" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="5" name="quote_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="sales_order_quote_id_fkey" implied="false" onDeleteCascade="false" table="quote"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="6" name="shipping_address_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="sales_order_shipping_address_id_fkey" implied="false" onDeleteCascade="false" table="customer_address"/>
+         </column>
+         <column autoUpdated="false" digits="8" id="7" name="shipping_amount" nullable="false" remarks="" size="8" type="float4"/>
+         <column autoUpdated="false" digits="8" id="8" name="subtotal" nullable="false" remarks="" size="8" type="float4"/>
+         <column autoUpdated="false" digits="8" id="9" name="grand_total" nullable="false" remarks="" size="8" type="float4"/>
+         <column autoUpdated="false" defaultValue="1" digits="0" id="10" name="status" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" defaultValue="now()" digits="6" id="11" name="created_at" nullable="false" remarks="" size="35" type="timestamptz"/>
+         <column autoUpdated="false" digits="0" id="12" name="created_by" nullable="true" remarks="" size="19" type="int8"/>
+         <column autoUpdated="false" defaultValue="now()" digits="6" id="13" name="updated_at" nullable="false" remarks="" size="35" type="timestamptz"/>
+         <column autoUpdated="false" digits="0" id="14" name="updated_by" nullable="true" remarks="" size="19" type="int8"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="sales_order_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+   </tables>
+</database>
