@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<database name="vivu" schema="public" type="PostgreSQL - 9.6.2">
+   <tables>
+      <table name="gis_country" numRows="252" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="country_code" nullable="false" remarks="" size="2147483647" type="text">
+            <child column="country_code" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" table="gis_district"/>
+            <child column="country_code" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" table="gis_province"/>
+            <child column="country_code" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" table="gis_ward"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="iso3" nullable="false" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="2" name="iso_num" nullable="false" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="0" id="3" name="fips" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="4" name="name" nullable="false" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="5" name="capital" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="17" id="6" name="area_km2" nullable="true" remarks="" size="17" type="float8"/>
+         <column autoUpdated="false" digits="0" id="7" name="population" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="0" id="8" name="continent" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="9" name="tld" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="10" name="currency_code" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="11" name="currency_name" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="12" name="phone_code" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="13" name="postal_code_format" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="14" name="postal_code_regex" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="15" name="languages" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="16" name="neighbours" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="17" name="equivalen_fips_code" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="18" name="gis_id" nullable="true" remarks="" size="19" type="int8"/>
+         <column autoUpdated="false" digits="0" id="19" name="metadata" nullable="true" remarks="" size="2147483647" type="jsonb"/>
+         <column autoUpdated="false" digits="0" id="20" name="tsv" nullable="true" remarks="" size="2147483647" type="tsvector"/>
+         <primaryKey column="country_code" sequenceNumberInPK="1"/>
+         <index name="gis_country_pkey" unique="true">
+            <column ascending="true" name="country_code"/>
+         </index>
+         <index name="gis_country_iso3_unique" unique="true">
+            <column ascending="true" name="iso3"/>
+         </index>
+         <index name="gis_country_iso_num" unique="true">
+            <column ascending="true" name="iso_num"/>
+         </index>
+      </table>
+      <table name="gis_district" numRows="697" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="country_code" nullable="false" remarks="" size="2147483647" type="text">
+            <parent column="country_code" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" table="gis_country"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="province_code" nullable="false" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="2" name="district_code" nullable="false" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="3" name="name" nullable="false" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="4" name="name_ascii" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="5" name="type" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="6" name="location" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="6" id="7" name="latitude" nullable="true" remarks="" size="8" type="numeric"/>
+         <column autoUpdated="false" digits="6" id="8" name="longitude" nullable="true" remarks="" size="9" type="numeric"/>
+         <column autoUpdated="false" digits="0" id="9" name="gis_id" nullable="true" remarks="" size="19" type="int8"/>
+         <column autoUpdated="false" digits="0" id="10" name="metadata" nullable="true" remarks="" size="2147483647" type="jsonb"/>
+         <column autoUpdated="false" digits="0" id="11" name="tsv" nullable="true" remarks="" size="2147483647" type="tsvector"/>
+         <primaryKey column="country_code" sequenceNumberInPK="1"/>
+         <primaryKey column="province_code" sequenceNumberInPK="2"/>
+         <primaryKey column="district_code" sequenceNumberInPK="3"/>
+         <index name="gis_district_pkey" unique="true">
+            <column ascending="true" name="country_code"/>
+            <column ascending="true" name="province_code"/>
+            <column ascending="true" name="district_code"/>
+         </index>
+      </table>
+      <table name="gis_province" numRows="63" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="country_code" nullable="false" remarks="" size="2147483647" type="text">
+            <parent column="country_code" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" table="gis_country"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="province_code" nullable="false" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="2" name="name" nullable="false" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="3" name="name_ascii" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="4" name="type" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="5" name="gis_id" nullable="true" remarks="" size="19" type="int8"/>
+         <column autoUpdated="false" digits="0" id="6" name="metadata" nullable="true" remarks="" size="2147483647" type="jsonb"/>
+         <column autoUpdated="false" digits="0" id="7" name="tsv" nullable="true" remarks="" size="2147483647" type="tsvector"/>
+         <primaryKey column="country_code" sequenceNumberInPK="1"/>
+         <primaryKey column="province_code" sequenceNumberInPK="2"/>
+         <index name="gis_province_pkey" unique="true">
+            <column ascending="true" name="country_code"/>
+            <column ascending="true" name="province_code"/>
+         </index>
+      </table>
+      <table name="gis_ward" numRows="11110" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('gis_ward_uid_seq'::regclass)" digits="0" id="0" name="uid" nullable="false" remarks="" size="10" type="serial"/>
+         <column autoUpdated="false" digits="0" id="1" name="country_code" nullable="false" remarks="" size="2147483647" type="text">
+            <parent column="country_code" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" table="gis_country"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="2" name="province_code" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="3" name="district_code" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="4" name="ward_code" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="5" name="name" nullable="false" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="6" name="name_ascii" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="7" name="type" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="8" name="location" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="6" id="9" name="latitude" nullable="true" remarks="" size="8" type="numeric"/>
+         <column autoUpdated="false" digits="6" id="10" name="longitude" nullable="true" remarks="" size="9" type="numeric"/>
+         <column autoUpdated="false" digits="0" id="11" name="gis_id" nullable="true" remarks="" size="19" type="int8"/>
+         <column autoUpdated="false" digits="0" id="12" name="metadata" nullable="true" remarks="" size="2147483647" type="jsonb"/>
+         <column autoUpdated="false" digits="0" id="13" name="tsv" nullable="true" remarks="" size="2147483647" type="tsvector"/>
+         <primaryKey column="uid" sequenceNumberInPK="1"/>
+         <index name="gis_ward_pkey" unique="true">
+            <column ascending="true" name="uid"/>
+         </index>
+      </table>
+      <table name="migration" numRows="1" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="version" nullable="false" remarks="" size="180" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="1" name="apply_time" nullable="true" remarks="" size="10" type="int4"/>
+         <primaryKey column="version" sequenceNumberInPK="1"/>
+         <index name="migration_pkey" unique="true">
+            <column ascending="true" name="version"/>
+         </index>
+      </table>
+      <table name="slide" numRows="10" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('slide_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial">
+            <parent column="id" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" table="system_settings"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="image" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="2" name="link" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="3" name="priority" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" defaultValue="now()" digits="6" id="4" name="created_at" nullable="false" remarks="" size="35" type="timestamptz"/>
+         <column autoUpdated="false" defaultValue="now()" digits="6" id="5" name="updated_at" nullable="false" remarks="" size="35" type="timestamptz"/>
+         <column autoUpdated="false" digits="0" id="6" name="created_by" nullable="true" remarks="" size="19" type="int8"/>
+         <column autoUpdated="false" digits="0" id="7" name="updated_by" nullable="true" remarks="" size="19" type="int8"/>
+         <column autoUpdated="false" defaultValue="1" digits="0" id="8" name="status" nullable="true" remarks="" size="10" type="int4"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="slide_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table name="system_settings" numRows="2" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('system_settings_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial">
+            <child column="id" foreignKey="Implied Constraint" implied="true" onDeleteCascade="false" table="slide"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="key" nullable="false" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="2" name="value" nullable="false" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="3" name="targets" nullable="true" remarks="" size="2147483647" type="_text"/>
+         <column autoUpdated="false" defaultValue="now()" digits="6" id="4" name="created_at" nullable="false" remarks="" size="35" type="timestamptz"/>
+         <column autoUpdated="false" defaultValue="now()" digits="6" id="5" name="updated_at" nullable="false" remarks="" size="35" type="timestamptz"/>
+         <column autoUpdated="false" digits="0" id="6" name="created_by" nullable="true" remarks="" size="19" type="int8"/>
+         <column autoUpdated="false" digits="0" id="7" name="updated_by" nullable="true" remarks="" size="19" type="int8"/>
+         <column autoUpdated="false" defaultValue="1" digits="0" id="8" name="status" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="0" id="9" name="type" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="10" name="explain" nullable="true" remarks="" size="2147483647" type="text"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="system_settings_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+   </tables>
+</database>

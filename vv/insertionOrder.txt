@@ -1,0 +1,14 @@
+customer
+customer_address
+category_group
+category
+product
+quote
+sales_order
+product_color
+quote_item
+order_payment
+order_status_history
+product_color_preview_image
+quote_payment
+order_item
